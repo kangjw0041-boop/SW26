@@ -1,0 +1,15 @@
+#백준 7785
+
+n=int(input())
+d={}
+
+for _ in range(n):
+    name,log=input().split()
+
+    if log=="enter":
+        d[name]=1
+    else:
+        del d[name]
+
+for x in sorted(d.keys(),reverse=True):
+    print(x)
