@@ -1,0 +1,18 @@
+백준 13414
+
+k,l=map(int,input().split())
+
+students={}
+
+for i in range(l):
+    student= input()
+    students[student]= i
+
+sorted_students = sorted(students.items(), key=lambda x: x[1])
+
+count=0
+for student, _ in sorted_students:
+    if count==k:
+        break
+    print(student)
+    count+= 1
