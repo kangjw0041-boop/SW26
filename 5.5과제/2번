@@ -5,7 +5,7 @@ def make_matrix(size):
     for i in range(size):
         line = []
         for j in range(size):
-            num = random.randint(1, size * size * 10 - 1)
+            num = random.randint(1, size * size*10-1)
             line.append(num)
         mat.append(line)
     return mat
