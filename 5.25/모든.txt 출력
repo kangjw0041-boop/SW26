@@ -9,7 +9,6 @@ else:
 
     for root, dirs, files in os.walk(folder_path):
         for file in files:
-            # .txt 파일만 출력
             if file.endswith(".txt"):
                 full_path = os.path.join(root, file)
                 print(full_path)
