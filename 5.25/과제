@@ -1,0 +1,47 @@
+import os
+import filecmp
+
+dir1 = input("첫 번째 디렉토리 이름: ")
+dir2 = input("두 번째 디렉토리 이름: ")
+
+path1 = os.path.join(os.getcwd(), dir1)
+path2 = os.path.join(os.getcwd(), dir2)
+
+if not os.path.isdir(path1) or not os.path.isdir(path2):
+    print("입력한 디렉토리가 존재하지 않습니다.")
+else:
+    files1 = sorted(os.listdir(path1))
+    files2 = sorted(os.listdir(path2))
+
+    if len(files1) != len(files2):
+        print("두 디렉토리의 파일 개수가 다릅니다.")
+    else:
+        same = True
+
+        for file1, file2 in zip(files1, files2):
+            full_path1 = os.path.join(path1, file1)
+            full_path2 = os.path.join(path2, file2)
+
+            if file1 != file2:
+                print(f"파일 이름이 다릅니다: {file1} / {file2}")
+                same = False
+                continue
+
+            if not os.path.isfile(full_path1) or not os.path.isfile(full_path2):
+                print(f"{file1}은 일반 파일이 아닙니다.")
+                same = False
+                continue
+
+            if os.path.getsize(full_path1) != os.path.getsize(full_path2):
+                print(f"파일 크기가 다릅니다: {file1}")
+                same = False
+                continue
+
+            if not filecmp.cmp(full_path1, full_path2, shallow=False):
+                print(f"파일 내용이 다릅니다: {file1}")
+                same = False
+
+        if same:
+            print("두 디렉토리의 모든 파일 이름, 크기, 내용이 같습니다.")
+        else:
+            print("두 디렉토리는 서로 다릅니다.")
