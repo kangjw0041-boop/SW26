@@ -1,0 +1,15 @@
+import os
+
+folder_path = input("폴더 경로를 입력하세요: ")
+
+if not os.path.isdir(folder_path):
+    print("존재하지 않는 폴더입니다.")
+else:
+    print("\n텍스트 파일 목록:\n")
+
+    for root, dirs, files in os.walk(folder_path):
+        for file in files:
+            # .txt 파일만 출력
+            if file.endswith(".txt"):
+                full_path = os.path.join(root, file)
+                print(full_path)
